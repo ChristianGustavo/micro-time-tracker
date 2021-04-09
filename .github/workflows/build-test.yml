@@ -50,7 +50,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Download build
-        uses: actions/download-artifat@v1
+        uses: actions/download-artifact@v1
         with:
           name: deploy_dist
 
