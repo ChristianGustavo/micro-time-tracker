@@ -1,5 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, Renderer2 } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -8,16 +8,35 @@ import { Component, Inject, OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit {
 
-  constructor(@Inject(DOCUMENT) private document: Document) {}
+  private html!: HTMLElement;
+  private microApps = [
+    'button'
+  ];
+
+  constructor(
+    @Inject(DOCUMENT) private document: Document,
+    private renderer: Renderer2
+  ) {}
 
   ngOnInit(): void {
-    const script = this.document.createElement('script');
-    script.src = 'assets/micro-time-tracker/button/main.js';
-
-    this.document.body.appendChild(script);
+    this.selectHTMLElement();
+    this.addMicroScripts();
   }
 
-  log(): void {
-    console.log('log');
+  private selectHTMLElement(): void {
+    this.html = this.renderer.selectRootElement('html', true);
+  }
+
+  private addMicroScripts(): void {
+    this.microApps.forEach(app => {
+      const script = this.document.createElement('script');
+      script.src = `assets/micro-time-tracker/${app}/main.js`;
+
+      this.document.body.appendChild(script);
+    });
+  }
+
+  toggleDarkMode(): void {
+    this.html.classList.toggle('dark');
   }
 }
