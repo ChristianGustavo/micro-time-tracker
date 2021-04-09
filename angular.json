@@ -125,6 +125,129 @@
           }
         }
       }
+    },
+    "button": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        },
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "projects/button",
+      "sourceRoot": "projects/button/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "ngx-build-plus:browser",
+          "options": {
+            "outputPath": "dist/button",
+            "index": "projects/button/src/index.html",
+            "main": "projects/button/src/main.ts",
+            "polyfills": "projects/button/src/polyfills.ts",
+            "tsConfig": "projects/button/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/button/src/favicon.ico",
+              "projects/button/src/assets"
+            ],
+            "styles": [
+              "projects/button/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/button/src/environments/environment.ts",
+                  "with": "projects/button/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "ngx-build-plus:dev-server",
+          "options": {
+            "browserTarget": "button:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "button:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "button:build"
+          }
+        },
+        "test": {
+          "builder": "ngx-build-plus:karma",
+          "options": {
+            "main": "projects/button/src/test.ts",
+            "polyfills": "projects/button/src/polyfills.ts",
+            "tsConfig": "projects/button/tsconfig.spec.json",
+            "karmaConfig": "projects/button/karma.conf.js",
+            "assets": [
+              "projects/button/src/favicon.ico",
+              "projects/button/src/assets"
+            ],
+            "styles": [
+              "projects/button/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/button/tsconfig.app.json",
+              "projects/button/tsconfig.spec.json",
+              "projects/button/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/button/e2e/protractor.conf.js",
+            "devServerTarget": "button:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "button:serve:production"
+            }
+          }
+        }
+      }
     }
   },
   "defaultProject": "micro-time-tracker"
