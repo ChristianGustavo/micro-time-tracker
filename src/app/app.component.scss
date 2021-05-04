@@ -4,3 +4,10 @@ micro-button {
   left: 50%;
   transform: translateX(-50%);
 }
+
+.clock-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}

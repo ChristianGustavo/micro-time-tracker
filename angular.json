@@ -248,6 +248,129 @@
           }
         }
       }
+    },
+    "clock": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        },
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "projects/clock",
+      "sourceRoot": "projects/clock/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "ngx-build-plus:browser",
+          "options": {
+            "outputPath": "dist/clock",
+            "index": "projects/clock/src/index.html",
+            "main": "projects/clock/src/main.ts",
+            "polyfills": "projects/clock/src/polyfills.ts",
+            "tsConfig": "projects/clock/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/clock/src/favicon.ico",
+              "projects/clock/src/assets"
+            ],
+            "styles": [
+              "projects/clock/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/clock/src/environments/environment.ts",
+                  "with": "projects/clock/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "ngx-build-plus:dev-server",
+          "options": {
+            "browserTarget": "clock:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "clock:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "clock:build"
+          }
+        },
+        "test": {
+          "builder": "ngx-build-plus:karma",
+          "options": {
+            "main": "projects/clock/src/test.ts",
+            "polyfills": "projects/clock/src/polyfills.ts",
+            "tsConfig": "projects/clock/tsconfig.spec.json",
+            "karmaConfig": "projects/clock/karma.conf.js",
+            "assets": [
+              "projects/clock/src/favicon.ico",
+              "projects/clock/src/assets"
+            ],
+            "styles": [
+              "projects/clock/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/clock/tsconfig.app.json",
+              "projects/clock/tsconfig.spec.json",
+              "projects/clock/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/clock/e2e/protractor.conf.js",
+            "devServerTarget": "clock:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "clock:serve:production"
+            }
+          }
+        }
+      }
     }
   },
   "defaultProject": "micro-time-tracker"
