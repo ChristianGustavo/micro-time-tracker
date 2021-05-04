@@ -1,5 +1,4 @@
 $color-red: #f80000;
-$primary-color: #000;
 
 .clock {
   position: relative;
@@ -11,7 +10,7 @@ $primary-color: #000;
   position: absolute;
   width: 4px;
   height: 100px;
-  background-color: $primary-color;
+  background-color: var(--primary-color);
   left: 50%;
   top: 50%;
   transform-origin: bottom center;
@@ -45,7 +44,7 @@ $primary-color: #000;
 .center-point::after {
   content: '';
   position: absolute;
-  background-color: $primary-color;
+  background-color: var(--primary-color);
   width: 5px;
   height: 5px;
   left: 50%;

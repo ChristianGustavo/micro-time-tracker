@@ -10,7 +10,8 @@ export class AppComponent implements OnInit {
 
   private html!: HTMLElement;
   private microApps = [
-    'button'
+    'button',
+    'clock'
   ];
 
   constructor(

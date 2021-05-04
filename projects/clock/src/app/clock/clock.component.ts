@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { interval } from 'rxjs';
+import { ChangeDetectionStrategy, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { interval, Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 import { IClockDate } from './../models/clock-date.interface';
@@ -10,7 +10,7 @@ import { IClockDate } from './../models/clock-date.interface';
   styleUrls: ['./clock.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ClockComponent implements OnInit {
+export class ClockComponent implements OnDestroy, OnInit {
 
   @ViewChild('hour') hour!: ElementRef;
   @ViewChild('minute') minute!: ElementRef;
@@ -21,15 +21,21 @@ export class ClockComponent implements OnInit {
   private readonly MAX_NUM_HOUR = 11;
   private readonly INTERVAL_TIMER = 1000;
 
+  interval$!: Subscription;
+
   ngOnInit(): void {
-    interval(this.INTERVAL_TIMER)
+    this.interval$ = interval(this.INTERVAL_TIMER)
       .pipe(
         tap(() => this.setTime())
       )
       .subscribe();
   }
 
-  setTime(): void {
+  ngOnDestroy(): void {
+    this.interval$.unsubscribe();
+  }
+
+  private setTime(): void {
     const { hours, minutes, seconds } = this.retrieveSecondsHoursAndMinutes();
 
     this.hour.nativeElement.style.transform = this.calculateTransform(hours, this.MAX_NUM_HOUR);
