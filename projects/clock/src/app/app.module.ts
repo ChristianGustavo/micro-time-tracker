@@ -1,4 +1,4 @@
-import { ApplicationRef, DoBootstrap, Injector, NgModule } from '@angular/core';
+import { DoBootstrap, Injector, NgModule } from '@angular/core';
 import { createCustomElement } from '@angular/elements';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -14,9 +14,7 @@ export class AppModule implements DoBootstrap {
 
   constructor(private injector: Injector) {}
 
-  ngDoBootstrap(appRef: ApplicationRef): void {
-    appRef.bootstrap(ClockComponent);
-
+  ngDoBootstrap(): void {
     const microName = 'micro-clock';
 
     if (!customElements.get(microName)) {
