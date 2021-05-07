@@ -27,7 +27,7 @@ describe('DigitalClockComponent', () => {
     component.dateAndTime$?.subscribe(({ time, date, day }) => {
         const dateTest = new Date();
 
-        expect(time).toMatch(/\d{2}:\d{2}?\s[A-Z]{2}/);
+        expect(time).toMatch(/\d{1,2}:\d{2}?\s[A-Z]{2}/);
         expect(date).toBeDefined();
         expect(day).toBe(dateTest.getDate());
 
