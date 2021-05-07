@@ -4,51 +4,51 @@ $color-red: #f80000;
   position: relative;
   width: 200px;
   height: 200px;
-}
 
-.needle {
-  position: absolute;
-  width: 4px;
-  height: 100px;
-  background-color: var(--primary-color);
-  left: 50%;
-  top: 50%;
-  transform-origin: bottom center;
-}
+  .needle {
+    position: absolute;
+    width: 4px;
+    height: 100px;
+    background-color: var(--primary-color);
+    left: 50%;
+    top: 50%;
+    transform-origin: bottom center;
 
-.needle.hour {
-  height: 65px;
-  transform: translate(-50%, -100%) rotate(60deg);
-}
+    &.hour {
+      height: 65px;
+      transform: translate(-50%, -100%) rotate(60deg);
+    }
 
-.needle.second {
-  background-color: $color-red;
-  transform: translate(-50%, -100%) rotate(90deg);
-}
+    &.second {
+      background-color: $color-red;
+      transform: translate(-50%, -100%) rotate(90deg);
+    }
 
-.needle.minute {
-  transform: translate(-50%, -100%) rotate(100deg);
-}
+    &.minute {
+      transform: translate(-50%, -100%) rotate(100deg);
+    }
+  }
 
-.center-point {
-  position: absolute;
-  background-color: $color-red;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-}
+  .center-point {
+    position: absolute;
+    background-color: $color-red;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 
-.center-point::after {
-  content: '';
-  position: absolute;
-  background-color: var(--primary-color);
-  width: 5px;
-  height: 5px;
-  left: 50%;
-  top: 50%;
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
+    &::after {
+      content: '';
+      position: absolute;
+      background-color: var(--primary-color);
+      width: 5px;
+      height: 5px;
+      left: 50%;
+      top: 50%;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
 }
