@@ -9,5 +9,10 @@ micro-button {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   height: 100vh;
+
+  micro-digital-clock {
+    margin-top: 2rem;
+  }
 }

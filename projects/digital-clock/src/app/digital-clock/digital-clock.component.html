@@ -1,0 +1,15 @@
+<div 
+  @fadeIn
+  class="digital-clock-container" 
+  *ngIf="dateAndTime$ | async as dateAndTime"
+>
+  <div class="time">{{ dateAndTime.time }}</div>
+
+  <div class="date">
+    {{ dateAndTime.date }}
+    <span class="circle">
+      {{ dateAndTime.day }}
+    </span>
+  </div>
+
+</div>

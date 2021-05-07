@@ -11,7 +11,8 @@ export class AppComponent implements OnInit {
   private html!: HTMLElement;
   private microApps = [
     'button',
-    'clock'
+    'clock',
+    'digital-clock'
   ];
 
   constructor(

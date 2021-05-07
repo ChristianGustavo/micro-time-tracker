@@ -371,6 +371,129 @@
           }
         }
       }
+    },
+    "digital-clock": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        },
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "projects/digital-clock",
+      "sourceRoot": "projects/digital-clock/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "ngx-build-plus:browser",
+          "options": {
+            "outputPath": "dist/digital-clock",
+            "index": "projects/digital-clock/src/index.html",
+            "main": "projects/digital-clock/src/main.ts",
+            "polyfills": "projects/digital-clock/src/polyfills.ts",
+            "tsConfig": "projects/digital-clock/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/digital-clock/src/favicon.ico",
+              "projects/digital-clock/src/assets"
+            ],
+            "styles": [
+              "projects/digital-clock/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/digital-clock/src/environments/environment.ts",
+                  "with": "projects/digital-clock/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "ngx-build-plus:dev-server",
+          "options": {
+            "browserTarget": "digital-clock:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "digital-clock:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "digital-clock:build"
+          }
+        },
+        "test": {
+          "builder": "ngx-build-plus:karma",
+          "options": {
+            "main": "projects/digital-clock/src/test.ts",
+            "polyfills": "projects/digital-clock/src/polyfills.ts",
+            "tsConfig": "projects/digital-clock/tsconfig.spec.json",
+            "karmaConfig": "projects/digital-clock/karma.conf.js",
+            "assets": [
+              "projects/digital-clock/src/favicon.ico",
+              "projects/digital-clock/src/assets"
+            ],
+            "styles": [
+              "projects/digital-clock/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/digital-clock/tsconfig.app.json",
+              "projects/digital-clock/tsconfig.spec.json",
+              "projects/digital-clock/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/digital-clock/e2e/protractor.conf.js",
+            "devServerTarget": "digital-clock:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "digital-clock:serve:production"
+            }
+          }
+        }
+      }
     }
   },
   "defaultProject": "micro-time-tracker"
