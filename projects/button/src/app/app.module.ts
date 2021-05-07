@@ -15,8 +15,10 @@ export class AppModule implements DoBootstrap {
   constructor(private injector: Injector) {}
 
   ngDoBootstrap(): void {
-    const buttonCustomElement = createCustomElement(ButtonComponent, { injector: this.injector });
-    customElements.define('micro-button', buttonCustomElement);
+    if (!customElements.get('micro-button')) {
+      const buttonCustomElement = createCustomElement(ButtonComponent, { injector: this.injector });
+      customElements.define('micro-button', buttonCustomElement);
+    }
   }
 
 }
