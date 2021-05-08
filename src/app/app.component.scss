@@ -1,16 +1,9 @@
-micro-button {
-  position: absolute;
-  top: 50px;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
 .clock-container {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 100vh;
+  height: 85vh;
 
   micro-digital-clock {
     margin-top: 2rem;
