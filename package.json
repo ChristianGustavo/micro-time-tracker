@@ -11,6 +11,7 @@
     "build:button": "ng build --prod --single-bundle --project button --output-hashing none --sourceMap=false --output-path src/assets/micro-time-tracker/button",
     "build:clock": "ng build --prod --single-bundle --project clock --output-hashing none --sourceMap=false --output-path src/assets/micro-time-tracker/clock",
     "build:digital-clock": "ng build --prod --single-bundle --project digital-clock --output-hashing none --sourceMap=false --output-path src/assets/micro-time-tracker/digital-clock",
+    "build:header": "ng build --prod --single-bundle --project header --output-hashing none --sourceMap=false --output-path src/assets/micro-time-tracker/header",
     "test": "ng test",
     "test:ci": "ng test --watch=false --code-coverage --source-map true",
     "lint": "ng lint",
