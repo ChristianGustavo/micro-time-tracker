@@ -620,6 +620,133 @@
           }
         }
       }
+    },
+    "dashboard": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        },
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "projects/dashboard",
+      "sourceRoot": "projects/dashboard/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "ngx-build-plus:browser",
+          "options": {
+            "outputPath": "dist/dashboard",
+            "index": "projects/dashboard/src/index.html",
+            "main": "projects/dashboard/src/main.ts",
+            "polyfills": "projects/dashboard/src/polyfills.ts",
+            "tsConfig": "projects/dashboard/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/dashboard/src/favicon.ico",
+              "projects/dashboard/src/assets"
+            ],
+            "styles": [
+              "projects/dashboard/src/styles.scss",
+              "src/styles.scss"
+            ],
+            "scripts": [
+              "src/assets/micro-time-tracker/digital-clock/main.js",
+              "src/assets/micro-time-tracker/clock/main.js"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/dashboard/src/environments/environment.ts",
+                  "with": "projects/dashboard/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "ngx-build-plus:dev-server",
+          "options": {
+            "browserTarget": "dashboard:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "dashboard:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "dashboard:build"
+          }
+        },
+        "test": {
+          "builder": "ngx-build-plus:karma",
+          "options": {
+            "main": "projects/dashboard/src/test.ts",
+            "polyfills": "projects/dashboard/src/polyfills.ts",
+            "tsConfig": "projects/dashboard/tsconfig.spec.json",
+            "karmaConfig": "projects/dashboard/karma.conf.js",
+            "assets": [
+              "projects/dashboard/src/favicon.ico",
+              "projects/dashboard/src/assets"
+            ],
+            "styles": [
+              "projects/dashboard/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/dashboard/tsconfig.app.json",
+              "projects/dashboard/tsconfig.spec.json",
+              "projects/dashboard/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/dashboard/e2e/protractor.conf.js",
+            "devServerTarget": "dashboard:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "dashboard:serve:production"
+            }
+          }
+        }
+      }
     }
   },
   "defaultProject": "micro-time-tracker"
