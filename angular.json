@@ -523,9 +523,12 @@
               "projects/header/src/assets"
             ],
             "styles": [
-              "projects/header/src/styles.scss"
+              "projects/header/src/styles.scss",
+              "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/micro-time-tracker/button/main.js"
+            ]
           },
           "configurations": {
             "production": {

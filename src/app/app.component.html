@@ -1,4 +1,19 @@
-<micro-header></micro-header>
+<micro-header>
+  <micro-button 
+    type="button" 
+    (click)="toggleDarkMode()"
+  >
+    Dark Mode
+  </micro-button>
+
+  <micro-button 
+    type="button"
+    class="ml-2"
+    (click)="signUp()"
+  >
+    Cadastre-se
+  </micro-button>
+</micro-header>
 
 <div class="clock-container">
   <micro-clock></micro-clock>
