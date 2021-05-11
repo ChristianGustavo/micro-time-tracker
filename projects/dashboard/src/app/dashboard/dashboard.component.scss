@@ -1,0 +1,11 @@
+.clock-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 85vh;
+
+  micro-digital-clock {
+    margin-top: 2rem;
+  }
+}

@@ -20,9 +20,8 @@ export class AppModule implements DoBootstrap {
 
   private microApps = [
     'header',
-    'clock',
-    'digital-clock',
     'button',
+    'dashboard',
   ];
 
   constructor(
