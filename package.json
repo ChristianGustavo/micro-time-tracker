@@ -7,7 +7,7 @@
     "build": "ng build",
     "build:ci": "npm run build:components && npm run build:micro-time-tracker",
     "build:micro-time-tracker": "ng build --prod --sourceMap=false --base-href /micro-time-tracker/",
-    "build:components": "npm run build:button && npm run build:clock && npm run build:digital-clock",
+    "build:components": "npm run build:button && npm run build:clock && npm run build:digital-clock && npm run build:header",
     "build:button": "ng build --prod --single-bundle --project button --output-hashing none --sourceMap=false --output-path src/assets/micro-time-tracker/button",
     "build:clock": "ng build --prod --single-bundle --project clock --output-hashing none --sourceMap=false --output-path src/assets/micro-time-tracker/clock",
     "build:digital-clock": "ng build --prod --single-bundle --project digital-clock --output-hashing none --sourceMap=false --output-path src/assets/micro-time-tracker/digital-clock",
